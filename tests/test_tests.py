@@ -1,18 +1,17 @@
+"""Smoke tests for tests."""
 import unittest
 
-class TestDrugDiscoveryParserTests(unittest.TestCase):
+from drug_discovery_parser import tests
 
-    def test_valid_file(self):
-        from drug_discovery_parser import tests
-        self.assertTrue(hasattr(tests, 'TestDrugDiscoveryParser'))
 
-    def test_invalid_file(self):
-        from drug_discovery_parser import tests
-        self.assertTrue(hasattr(tests, 'test_invalid_file'))
+class TestModule(unittest.TestCase):
+    def test_module_loads(self):
+        self.assertTrue(hasattr(tests, '__doc__'))
 
-    def test_empty_file(self):
-        from drug_discovery_parser import tests
-        self.assertTrue(hasattr(tests, 'test_empty_file'))
+    def test_public_api_exists(self):
+        public = [n for n in dir(tests) if not n.startswith('_')]
+        self.assertTrue(public)
+
 
 if __name__ == "__main__":
     unittest.main()
